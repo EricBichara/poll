@@ -1,57 +1,31 @@
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+    import {Dropdown, Theme} from "carbon-components-svelte";
+
+
+    let selectedId = 0;
+
+    let availableThemes = [{id: 0, text: 'white'}, {id: 1, text: 'g10'}, {id: 2, text: 'g80'}, {
+        id: 3,
+        text: 'g90'
+    }, {id: 4, text: 'g100'}]
+
+    function getTheme(themeId){
+        const thetheme = availableThemes.find(item => item.id === themeId);
+        return thetheme.text;
+    }
+
+    $: theme = getTheme(selectedId);
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+    <title>Home</title>
+    <meta name="description" content="Svelte demo app"/>
 </svelte:head>
 
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset="svelte-welcome.webp" type="image/webp" />
-				<img src="svelte-welcome.png" alt="Welcome" />
-			</picture>
-		</span>
+<Theme bind:theme></Theme>
 
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-
-	<Counter />
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 1;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<Dropdown
+        titleText="Theme"
+        selected="0"
+        bind:selectedId={selectedId}
+        items={availableThemes}></Dropdown>
