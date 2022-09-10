@@ -2,7 +2,7 @@
     import {Dropdown, Theme} from "carbon-components-svelte";
 
 
-    let selectedId = 0;
+    let selectedId = 3;
 
     let availableThemes = [{id: 0, text: 'white'}, {id: 1, text: 'g10'}, {id: 2, text: 'g80'}, {
         id: 3,
