@@ -1,2 +1,4 @@
 @import '@fontsource/fira-mono';
 @import "carbon-components-svelte/css/all.css";
+@import "@carbon/styles/css/styles.css";
+@import "@carbon/charts/styles.css";

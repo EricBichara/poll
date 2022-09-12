@@ -1,8 +1,7 @@
 <script lang="ts">
     import {PieChart} from "@carbon/charts-svelte";
-    import "@carbon/styles/css/styles.css";
-    import "@carbon/charts/styles.css";
     import {Button} from "carbon-components-svelte";
+    import supabase from "../db";
 
     let data = [
         {
@@ -30,6 +29,22 @@
             "value": 25000
         }
     ];
+
+    function getData() {
+        supabase.from('todos').then((value) => {
+            console.log('data', value);
+        });
+    }
+
+    function insertData() {
+        supabase.from('todos').insert({
+            text: 'new todo',
+            completed: false,
+            user_id: '4c27a3e0-cbaf-4b60-926a-e613b07f283f'
+        }).then((value) => {
+            getData();
+        })
+    }
 </script>
 
 <svelte:head>
@@ -37,7 +52,11 @@
     <meta name="description" content="Svelte demo app"/>
 </svelte:head>
 
-<a href="/random"><Button>Random</Button></a>
+<a href="/random">
+    <Button>Random</Button>
+</a>
+<Button on:click={getData}>Get Data</Button>
+<Button on:click={insertData}>Insert Data</Button>
 
 <PieChart
         data={data}
