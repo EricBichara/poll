@@ -2,14 +2,16 @@
 
     import {Button} from "carbon-components-svelte";
 
-    let key = "E";
-
-    let type = "Minor"
+    const keys = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
+    const types = ['Major', 'Minor'];
+    const inversions = ['Root Inversion - 1 3 5', '1st Inversion - 3 5 1', '2nd Inversion - 5 1 3'];
+    let key = keys[0];
+    let type = types[0];
+    let inversion = inversions[0];
 
     let intervalId;
 
-    const keys = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#']
-    const types = ['Major', 'Minor'];
+
 
     function startInterval() {
         stopInterval();
@@ -25,6 +27,7 @@
     function doAtInterval() {
         key = keys[Math.floor(Math.random() * keys.length)];
         type = types[Math.floor(Math.random()*types.length)];
+        inversion = inversions[Math.floor(Math.random()*inversions.length)];
     }
 </script>
 
@@ -38,6 +41,7 @@
 
 <div>{key}</div>
 <div>{type}</div>
+<div>{inversion}</div>
 
 <div>
     <Button on:click={startInterval}>Start</Button>
