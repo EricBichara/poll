@@ -3,6 +3,8 @@
     import {Button} from "carbon-components-svelte";
     import supabase from "../db";
 
+    export let todos = [];
+
     let data = [
         {
             "group": "2V2N 9KYPM version 1",
@@ -57,6 +59,11 @@
 </a>
 <Button on:click={getData}>Get Data</Button>
 <Button on:click={insertData}>Insert Data</Button>
+
+{#each todos as todo }
+    <div>{todo.text}</div>
+{/each}
+
 
 <PieChart
         data={data}
