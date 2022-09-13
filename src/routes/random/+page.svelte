@@ -39,6 +39,10 @@
     }
 </style>
 
+<a href="/">
+    <Button>Home</Button>
+</a>
+
 <div>{key}</div>
 <div>{type}</div>
 <div>{inversion}</div>
